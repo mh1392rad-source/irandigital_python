@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI ST → TCH</title>
+
+<!-- PWA -->
+<link rel="manifest" id="manifest">
+
+<style>
+body{
+  margin:0;
+  font-family:tahoma;
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  flex-direction:column;
+}
+
+.card{
+  width:90%;
+  max-width:420px;
+  background:rgba(255,255,255,0.06);
+  padding:25px;
+  border-radius:16px;
+  backdrop-filter:blur(10px);
+  text-align:center;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  margin-top:10px;
+  outline:none;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border:none;
+  border-radius:10px;
+  background:#3b82f6;
+  color:white;
+  cursor:pointer;
+}
+
+button:hover{background:#2563eb}
+
+#out{
+  margin-top:15px;
+  min-height:30px;
+  font-size:18px;
+  color:#22c55e;
+}
+
+small{
+  opacity:0.7;
+}
+
+a{
+  display:block;
+  margin-top:15px;
+  color:#38bdf8;
+  text-decoration:none;
+}
+
+/* typing cursor */
+.cursor::after{
+  content:"|";
+  animation:blink 0.7s infinite;
+}
+@keyframes blink{50%{opacity:0}}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h2>AI ST → TCH</h2>
+  <small>هوش مصنوعی سبک (Offline AI)</small>
+
+  <input id="txt" placeholder="مثلاً: fast test castle">
+
+  <button onclick="convert()">Convert AI</button>
+
+  <div id="out" class="cursor"></div>
+
+  <a href="https://eitaa.com/irandigital_python" target="_blank">
+    https://eitaa.com/irandigital_python
+  </a>
+
+  <button onclick="install()">📲 Install App</button>
+</div>
+
+<script>
+
+// smarter AI rules
+function smartConvert(text){
+  return text
+    .replace(/st/g,"tch")
+    .replace(/tion/g,"shun")
+    .replace(/ck/g,"k")
+    .replace(/ph/g,"f")
+    .replace(/ST/g,"TCH");
+}
+
+// typing effect
+function typeText(el, text){
+  el.innerHTML = "";
+  let i = 0;
+  let interval = setInterval(()=>{
+    el.innerHTML += text[i];
+    i++;
+    if(i >= text.length) clearInterval(interval);
+  }, 40);
+}
+
+function convert(){
+  let t = document.getElementById("txt").value;
+  let r = smartConvert(t);
+
+  typeText(document.getElementById("out"), r);
+}
+
+// PWA install
+let deferredPrompt;
+
+window.addEventListener("beforeinstallprompt", (e)=>{
+  e.preventDefault();
+  deferredPrompt = e;
+});
+
+function install(){
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+  }else{
+    alert("مرورگر شما نصب PWA را پشتیبانی نمی‌کند");
+  }
+}
+
+// dynamic manifest
+const manifest = {
+  name: "AI ST TCH",
+  short_name: "STTCH",
+  start_url: ".",
+  display: "standalone",
+  background_color: "#0f172a",
+  theme_color: "#0f172a"
+};
+
+const blob = new Blob([JSON.stringify(manifest)], {type:"application/json"});
+document.getElementById("manifest").href = URL.createObjectURL(blob);
+
+</script>
+
+</body>
+</html>
