@@ -1,163 +1,272 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI ST → TCH</title>
-
-<!-- PWA -->
-<link rel="manifest" id="manifest">
-
-<style>
-body{
-  margin:0;
-  font-family:tahoma;
-  background:linear-gradient(135deg,#0f172a,#1e293b);
-  color:white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  flex-direction:column;
-}
-
-.card{
-  width:90%;
-  max-width:420px;
-  background:rgba(255,255,255,0.06);
-  padding:25px;
-  border-radius:16px;
-  backdrop-filter:blur(10px);
-  text-align:center;
-}
-
-input{
-  width:100%;
-  padding:12px;
-  border:none;
-  border-radius:10px;
-  margin-top:10px;
-  outline:none;
-}
-
-button{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border:none;
-  border-radius:10px;
-  background:#3b82f6;
-  color:white;
-  cursor:pointer;
-}
-
-button:hover{background:#2563eb}
-
-#out{
-  margin-top:15px;
-  min-height:30px;
-  font-size:18px;
-  color:#22c55e;
-}
-
-small{
-  opacity:0.7;
-}
-
-a{
-  display:block;
-  margin-top:15px;
-  color:#38bdf8;
-  text-decoration:none;
-}
-
-/* typing cursor */
-.cursor::after{
-  content:"|";
-  animation:blink 0.7s infinite;
-}
-@keyframes blink{50%{opacity:0}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IranDigital | آموزش پایتون و هوش مصنوعی</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Vazir', 'Tahoma', sans-serif;
+            background: #f4f7f6;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        .members-count {
+            background: #ffd700;
+            color: #1e3c72;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+        .btn-eitaa {
+            background: #00a859;
+            color: white;
+        }
+        .btn-site {
+            background: #ffd700;
+            color: #1e3c72;
+        }
+        .btn-upload {
+            background: #2a5298;
+            color: white;
+        }
+        .btn-challenge {
+            background: #e74c3c;
+            color: white;
+        }
+        .btn-purple {
+            background: #8e2de2;
+            color: white;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+        .section h2 {
+            color: #1e3c72;
+            border-bottom: 3px solid #ffd700;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .challenge-box {
+            background: #eef2f7;
+            padding: 15px;
+            border-radius: 10px;
+            border-right: 5px solid #2a5298;
+        }
+        .challenge-box pre {
+            background: #2d2d2d;
+            color: #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0;
+            direction: ltr;
+            text-align: left;
+        }
+        .link-card {
+            background: linear-gradient(145deg, #4a00e0, #8e2de2);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .link-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .team-list {
+            list-style: none;
+            padding: 0;
+        }
+        .team-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .team-list li:last-child {
+            border-bottom: none;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9em;
+        }
+        .note {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .firefox-notice {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            color: #856404;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 0.95em;
+        }
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8em; }
+            .btn { padding: 10px 20px; font-size: 0.9em; }
+            .btn-group { flex-direction: column; align-items: center; }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="card">
-  <h2>AI ST → TCH</h2>
-  <small>هوش مصنوعی سبک (Offline AI)</small>
+<div class="container">
 
-  <input id="txt" placeholder="مثلاً: fast test castle">
+    <!-- ===== پیام راهنما برای فایرفاکس ===== -->
+    <div class="firefox-notice">
+        🔒 <strong>نکته امنیتی:</strong> اگر از فایرفاکس استفاده می‌کنید، لینک‌های ایتا ممکنه با خطا مواجه بشن. 
+        روی دکمه‌ها کلیک کنید تا در پنجره جدید باز بشن.
+    </div>
 
-  <button onclick="convert()">Convert AI</button>
+    <!-- ===== HEADER ===== -->
+    <header>
+        <h1>🎯 ایران‌دیجیتال</h1>
+        <p>آموزش پایتون و هوش مصنوعی | از صفر تا صد</p>
+        <div class="members-count">👥 ۷۵۶ عضو</div>
+        <div class="btn-group">
+            <button onclick="openLink('https://eitaa.com/irandigital_python')" class="btn btn-eitaa">🚀 پیوستن به کانال ایتا</button>
+            <button onclick="openLink('https://mh1392rad-source.github.io/irandigital/')" class="btn btn-site">⭐ سایت ابزارهای کانال</button>
+        </div>
+    </header>
 
-  <div id="out" class="cursor"></div>
+    <!-- ===== کارت لینک به سایت دیگه ===== -->
+    <div class="link-card">
+        <h3>🌐 همه ابزارهای کانال در یک جا</h3>
+        <p style="margin-bottom: 15px;">بازی ریاضی، شطرنج، هوش مصنوعی، چت‌بات و ابزارهای بیشتر</p>
+        <button onclick="openLink('https://mh1392rad-source.github.io/irandigital/')" class="btn btn-purple">🔗 ورود به سایت اصلی</button>
+    </div>
 
-  <a href="https://eitaa.com/irandigital_python" target="_blank">
-    https://eitaa.com/irandigital_python
-  </a>
+    <!-- ===== چالش امروز ===== -->
+    <section class="section">
+        <h2>🔥 چالش امروز</h2>
+        <div class="challenge-box">
+            <p><strong>سوال:</strong> خروجی کد زیر چیست؟</p>
+            <pre>Tuple = (50, 55, 'z')
+Max = max(Tuple)
+print(Max)</pre>
+            <p>پاسخ خود را به @Mh1392rad در ایتا بفرستید.</p>
+            <button onclick="openLink('https://eitaa.com/Mh1392rad')" class="btn btn-challenge">📩 ارسال پاسخ به ادمین</button>
+            <p class="note">✅ پاسخ صحیح دیروز: گزینه D (Error)</p>
+        </div>
+    </section>
 
-  <button onclick="install()">📲 Install App</button>
+    <!-- ===== ارسال پروژه ===== -->
+    <section class="section">
+        <h2>📁 ارسال پروژه پایتون</h2>
+        <p>پروژه‌های خودت رو آپلود کن تا بررسی بشه!</p>
+        <p style="font-size: 0.9em; color: #555; margin: 10px 0;">⬇️ روی دکمه زیر کلیک کن و فایل خودت رو آپلود کن.</p>
+        
+        <!-- 👇 لینک فرم گوگل شما -->
+        <button onclick="openLink('https://docs.google.com/forms/d/e/1FAIpQLSdHsVuff2W7e7hRRQGIRbGLVeqCPje-Vamhch5W-qnr_O0DbA/viewform?usp=header')" class="btn btn-upload">📤 آپلود فایل پروژه</button>
+        
+        <p class="note">🔹 فایل‌های زیپ یا py رو آپلود کن. حتماً آیدی ایتا و نام پروژه رو بنویس.</p>
+    </section>
+
+    <!-- ===== تیم مدیریت ===== -->
+    <section class="section">
+        <h2>👑 تیم مدیریت</h2>
+        <ul class="team-list">
+            <li>مدیر: <strong>@Mh1392rad</strong></li>
+            <li>ادمین: <strong>@AriyaMR</strong></li>
+            <li>ادمین: <strong>@MDMI_1249</strong></li>
+            <li>ادمین: <strong>@sarkau</strong></li>
+        </ul>
+        <p style="margin-top: 10px;">📢 کانال اطلاع‌رسانی: <button onclick="openLink('https://eitaa.com/IranDigital_Info')" style="background:none;border:none;color:#2a5298;text-decoration:underline;cursor:pointer;font-size:1em;">@IranDigital_Info</button></p>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>طراحی شده برای کانال <strong>IranDigital</strong> | میزبانی روی GitHub Pages</p>
+    </footer>
+
 </div>
 
 <script>
+    // ===== تابع باز کردن لینک با جاوااسکریپت (همیشه کار می‌کنه) =====
+    function openLink(url) {
+        console.log('🔄 تلاش برای باز کردن: ' + url);
+        try {
+            // روش اول: باز کردن در پنجره جدید
+            window.open(url, '_blank', 'noopener,noreferrer');
+        } catch (error) {
+            console.error('❌ خطا در باز کردن با window.open:', error);
+            try {
+                // روش دوم: تغییر مکان صفحه فعلی
+                window.location.href = url;
+            } catch (error2) {
+                console.error('❌ خطا در باز کردن با location.href:', error2);
+                // روش سوم: نمایش پیام به کاربر
+                alert('لطفاً لینک زیر را در مرورگر جدید باز کنید:\n' + url);
+            }
+        }
+    }
 
-// smarter AI rules
-function smartConvert(text){
-  return text
-    .replace(/st/g,"tch")
-    .replace(/tion/g,"shun")
-    .replace(/ck/g,"k")
-    .replace(/ph/g,"f")
-    .replace(/ST/g,"TCH");
-}
-
-// typing effect
-function typeText(el, text){
-  el.innerHTML = "";
-  let i = 0;
-  let interval = setInterval(()=>{
-    el.innerHTML += text[i];
-    i++;
-    if(i >= text.length) clearInterval(interval);
-  }, 40);
-}
-
-function convert(){
-  let t = document.getElementById("txt").value;
-  let r = smartConvert(t);
-
-  typeText(document.getElementById("out"), r);
-}
-
-// PWA install
-let deferredPrompt;
-
-window.addEventListener("beforeinstallprompt", (e)=>{
-  e.preventDefault();
-  deferredPrompt = e;
-});
-
-function install(){
-  if(deferredPrompt){
-    deferredPrompt.prompt();
-  }else{
-    alert("مرورگر شما نصب PWA را پشتیبانی نمی‌کند");
-  }
-}
-
-// dynamic manifest
-const manifest = {
-  name: "AI ST TCH",
-  short_name: "STTCH",
-  start_url: ".",
-  display: "standalone",
-  background_color: "#0f172a",
-  theme_color: "#0f172a"
-};
-
-const blob = new Blob([JSON.stringify(manifest)], {type:"application/json"});
-document.getElementById("manifest").href = URL.createObjectURL(blob);
-
+    // ===== نمایش پیام در کنسول =====
+    console.log('✅ سایت IranDigital با موفقیت بارگذاری شد!');
+    console.log('📌 لینک‌ها با تابع openLink() باز می‌شن.');
+    console.log('🔒 برای حل مشکل فایرفاکس، از پنجره جدید استفاده می‌شود.');
 </script>
 
 </body>
